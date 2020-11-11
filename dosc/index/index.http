@@ -1,0 +1,7 @@
+@url = http://127.0.0.1:2020
+
+
+GET {{url}}/api/welcome
+
+###
+GET {{url}}/api/about-us
