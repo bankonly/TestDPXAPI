@@ -1,5 +1,6 @@
 const Res = require("ssv-response");
 const mongoose = require("mongoose");
+const { TrackSession } = require("../controllers/session.controller");
 
 const Catcher = function (handler, useTransaction = false) {
   if (useTransaction) {
@@ -8,11 +9,14 @@ const Catcher = function (handler, useTransaction = false) {
       session.startTransaction();
       const resp = new Res(res);
       try {
-        await handler(req, res, next);
+        const opts = { session };
+        await handler(req, res, next, opts);
+        await TrackSession({ req, status: true });
         await session.commitTransaction();
         session.endSession();
       } catch (ex) {
-        session.abortTransaction();
+        await TrackSession({ req, status: false, message: ex.message });
+        await session.abortTransaction();
         session.endSession();
         return resp.somethingWrong({ error: ex });
       }
@@ -22,7 +26,9 @@ const Catcher = function (handler, useTransaction = false) {
       const resp = new Res(res);
       try {
         await handler(req, res, next);
+        await TrackSession({ req, status: true });
       } catch (ex) {
+        await TrackSession({ req, status: false, message: ex.message });
         return resp.somethingWrong({ error: ex });
       }
     };

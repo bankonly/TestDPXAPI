@@ -3,7 +3,7 @@ const UserRouter = require("./user.route");
 const Auth = require("../middlewares/auth");
 
 const InitialRoute = (app) => {
-  app.use("/api", Auth, [IndexRouter, UserRouter]);
+  app.use("/api", Auth, [UserRouter]);
   app.use("/app" /* [NO AUTH] */, [IndexRouter]);
 };
 

@@ -1,7 +1,7 @@
 const Catcher = require("../middlewares/async");
-const { Res, _ } = require("../utils/common-func");
+const { Res, _, JwtGenerator } = require("../utils/common-func");
 const UserModel = require("../models/user.model");
-const Jwt = require("jsonwebtoken");
+const SessionController = require("./session.controller");
 
 const UserController = {
   register: Catcher(async (req, res) => {
@@ -11,7 +11,10 @@ const UserController = {
     body.password = await _.bcryptFn.hashPassword(body.password);
     const created_user = await UserModel.create(body);
 
-    return resp.success({ data: created_user });
+    const payload = { _id: created_user._id };
+    const access_credential = JwtGenerator(payload);
+
+    return resp.success({ data: access_credential });
   }),
   login: Catcher(async (req, res) => {
     const resp = new Res(res);
@@ -19,8 +22,9 @@ const UserController = {
     const body = req.body;
 
     const payload = { _id: found_user._id };
-    const token = Jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: process.env.TOKEN_LIFE_TIME });
-    return resp.success({ data: { token } });
+    const access_credential = JwtGenerator(payload);
+
+    return resp.success({ data: access_credential });
   }),
   profile: Catcher(async (req, res) => {
     const resp = new Res(res);

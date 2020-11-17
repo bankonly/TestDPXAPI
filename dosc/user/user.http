@@ -5,8 +5,8 @@ POST {{url}}/app/register
 Content-Type: application/json
 
 {
-    "username":"souksavanh",
-    "email":"souksavanh.job@gmail.com",
+    "username":"bankonly   xaixompool",
+    "email":"souksavanh.public2@gmail.com",
     "password":"123123123",
     "confirm_password":"123123123"
 }
@@ -16,7 +16,7 @@ POST {{url}}/app/login
 Content-Type: application/json
 
 {
-    "username":"souksavanh",
+    "username":"bankonly xaixompool",
     "password":"123123123"
 }
 

@@ -46,6 +46,7 @@ const find = async (
     populate,
     select,
     search = { key: [], key_word: null, options: "i" },
+    error_code = 204,
   }
 ) => {
   if (!model) throw new Error("model is requried in find function");
@@ -76,8 +77,10 @@ const find = async (
   if (sort) result = result.sort(sort);
 
   if (paginate.paginate) {
-    paginate.limit = parseInt(paginate.limit);
-    paginate.page = parseInt(paginate.page);
+    paginate.limit = parseInt(paginate.limit) || false;
+    paginate.page = parseInt(paginate.page) || false;
+
+    if (!paginate.limit || !paginate.page) throw new Error("400::limit and page should be type of number");
     let skip = 0;
     if (paginate.page > 1) {
       skip = paginate.limit * paginate.page - paginate.limit;
@@ -87,8 +90,9 @@ const find = async (
   }
 
   if (throw_error) {
-    if ((_.isArray(result) && result.length < 1) || !result) {
-      throw new Error("204::no data found");
+    let check = await result;
+    if ((_.isArray(check) && check.length < 1) || !check) {
+      throw new Error(error_code + "::no data found");
     }
   }
 
