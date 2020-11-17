@@ -36,6 +36,7 @@ const remove = async (model, { _id, removeFromDb = false, deleted_at = Date.now(
 const find = async (
   model,
   {
+    throw_error = false,
     many = true,
     deleted_at = null,
     sort = { created_at: 1 },
@@ -85,11 +86,24 @@ const find = async (
     result = result.skip(skip).limit(paginate.limit);
   }
 
+  if (throw_error) {
+    if ((_.isArray(result) && result.length < 1) || !result) {
+      throw new Error("204::no data found");
+    }
+  }
+
   return result;
+};
+
+const findExist = async (model, { condition = {}, key }) => {
+  condition = { deleted_at: null, ...condition };
+  const excute = await model.findOne(condition);
+  if (excute) throw new Error(`400::${key} already exist`);
 };
 
 exports.Mongo = {
   findById,
   remove,
   find,
+  findExist,
 };

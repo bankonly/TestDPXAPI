@@ -16,21 +16,35 @@ const validate = (body, validate_rule) => {
     }
   }
 
+  for (let i = 0; i < rule_keys.length; i++) {
+    const key = rule_keys[i];
+    const element = validate_rule[key];
+
+    if (typeof element !== "string") throw new Error("string accept but got " + typeof element);
+    const rules = element.toString().split(",");
+    const method = rules.filter((e) => !["required", "optional"].includes(e));
+    
+    for (let imt = 0; imt < method.length; imt++) {
+      const element = method[imt];
+      // if(typeof element !== )
+    }
+  }
+
   return true;
 };
 
 const validate_rule = {
   name: "required,string",
   password: "required,string",
-  confirm_password: "required,string",
+  confirm_password: "optional,string",
 };
 
 const body = {
   name: "Souksavanh",
-  confirm_password: "123456789",
+  password: "123456789",
 };
 
 const validation = validate(body, validate_rule);
-// LOG(validation);
+LOG(validation);
 
 module.exports.validate = validate;

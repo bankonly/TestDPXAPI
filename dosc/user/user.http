@@ -1,0 +1,27 @@
+@url = http://127.0.0.1:2020
+
+
+POST {{url}}/app/register
+Content-Type: application/json
+
+{
+    "username":"souksavanh",
+    "email":"souksavanh.job@gmail.com",
+    "password":"123123123",
+    "confirm_password":"123123123"
+}
+
+###
+POST {{url}}/app/login
+Content-Type: application/json
+
+{
+    "username":"souksavanh",
+    "password":"123123123"
+}
+
+###
+GET {{url}}/api/user/profile
+Authorization: {{$token}}
+
+# 5f212f8b3f91c81672d7f398 confirm
