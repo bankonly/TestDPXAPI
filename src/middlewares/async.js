@@ -1,6 +1,6 @@
 const Res = require("ssv-response");
 const mongoose = require("mongoose");
-const { TrackSession } = require("../controllers/session.controller");
+const { TrackSession } = require("../utils/session");
 
 const Catcher = function (handler, useTransaction = false) {
   if (useTransaction) {

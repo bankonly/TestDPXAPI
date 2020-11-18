@@ -1,6 +1,5 @@
 @url = http://127.0.0.1:2020
 
-
 POST {{url}}/app/register
 Content-Type: application/json
 
