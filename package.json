@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/server",
+    "make:controller": "node src/commands/mkdir.controller",
+    "make:route": "node src/commands/mkdir.route",
+    "make:model": "node src/commands/mkdir.model",
+    "make:all": "node src/commands/mkdir.resource",
     "clean": "rm -rf dist",
     "build": "npm run clean && mkdir dist && babel src -s -d dist",
     "prod": "npm run build && node bin/prod",
