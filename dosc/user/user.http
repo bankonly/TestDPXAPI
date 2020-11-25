@@ -15,8 +15,8 @@ POST {{url}}/app/login
 Content-Type: application/json
 
 {
-    "username":"bankonly xaixompool",
-    "password":"123123123"
+    "username":"bankonly",
+    "password":"111998tsc"
 }
 
 ###

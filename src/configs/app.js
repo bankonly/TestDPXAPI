@@ -25,7 +25,7 @@ const InitialApp = (app) => {
 };
 
 const OnEndInitialApp = (app) => {
-  app.use("/", (req, res) => res.status(404).json("PAGE NOT FOUND"));
+  app.use("/", (req, res) => res.status(404).json({ data: {}, message: "api not found", status: false, code: 404 }));
 };
 
 module.exports.InitialApp = InitialApp;

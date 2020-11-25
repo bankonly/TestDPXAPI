@@ -7,6 +7,7 @@ const UserValidator = require("../validations/user.validation");
 http.get("/welcome", IndexController.welcome);
 http.get("/about-us", IndexController.aboutUs);
 
+http.post("/send-otp-code", UserController.sendOtpCode);
 http.post("/register", UserValidator.register, UserController.register);
 http.post("/login", UserValidator.login, UserController.login);
 

@@ -12,11 +12,18 @@ module.exports.DB_TIMESTAMP_CONFIG = {
   },
 };
 module.exports.Res = Res;
+
 module.exports.JwtGenerator = (payload) => {
   const token = Jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: process.env.TOKEN_LIFE_TIME });
   const refresh_token = Jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET_KEY, { expiresIn: process.env.REFRESH_TOKEN_TOKEN_LIFE_TIME });
   return { token, refresh_token };
 };
+
+module.exports.JwtGeneratorResetToken = (payload) => {
+  const token = Jwt.sign(payload, process.env.RESET_PWD_SECRET_KEY, { expiresIn: process.env.RESET_PWD_TOKEN_LIFE_TIME });
+  return { token };
+};
+
 module.exports.GetFullUrl = (req) => `${req.protocol}://${req.headers.host}${req.originalUrl}`;
 module.exports._ = Utils;
 module.exports.Mkdir = ({ write_path, file_type, read_file, method }) => {
