@@ -7,8 +7,9 @@ const OtpRouter = require("./otp.route");
 
 const InitialRoute = (app) => {
   app.use("/api", Auth, [UserRouter, SessionRoute]);
-  app.use("/app" /* [NO AUTH] */, [IndexRouter]);
   app.use("/api/otp", OtpAuth, [OtpRouter]);
+
+  app.use("/app" /* [NO AUTH] */, [IndexRouter]);
 };
 
 module.exports = InitialRoute;

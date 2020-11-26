@@ -1,6 +1,7 @@
 const _ = require("ssv-utils");
 
 const findById = async (model, { _id, select = "-password -refresh_token" }) => {
+  _id = _.isArray(_id) ? _id : _id.toString();
   if (!_.isObjectId(_id)) throw new Error(`400::invalid ${_id || "objectId"}`);
   let condition = { _id: { $in: _id }, deleted_at: null };
 

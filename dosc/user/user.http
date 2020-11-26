@@ -16,7 +16,7 @@ Content-Type: application/json
 
 {
     "username":"bankonly",
-    "password":"111998tsc"
+    "password":"bank111998"
 }
 
 ###
@@ -24,3 +24,15 @@ GET {{url}}/api/user/profile
 Authorization: {{$token}}
 
 # 5f212f8b3f91c81672d7f398 confirm
+
+
+###
+POST {{url}}/api/user/change-password
+Content-Type: application/json
+Authorization: {{$token}}
+
+{
+    "password":"111998tsc",
+    "new_password":"bank111998",
+    "confirm_password":"bank111998"
+}

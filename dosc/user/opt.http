@@ -1,0 +1,32 @@
+@otpToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmIzOTBmMWVjZWQxYTM3ZjBlMjE1MTciLCJpYXQiOjE2MDYyOTcxMDMsImV4cCI6MTYwNjI5NzE2M30.qfC25aNxWEEgW2nlYd3lnrpIIFCNR_jtb_YT0B_KJNQ
+@url = http://127.0.0.1:2020
+
+###
+POST {{url}}/app/send-otp-code
+Content-Type: application/json
+
+{
+    "email":"souksavanh.business@gmail.com"
+}
+
+
+
+###
+POST {{url}}/api/otp/verify-otp
+Content-Type: application/json
+Authorization: {{otpToken}}
+
+{
+    "otp_code":"500067"
+}
+
+
+###
+POST {{url}}/api/otp/reset-password
+Content-Type: application/json
+Authorization: {{otpToken}}
+
+{
+    "password":"111998tsc",
+    "confirm_password":"111998tsc"
+}

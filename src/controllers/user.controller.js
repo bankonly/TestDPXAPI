@@ -4,6 +4,7 @@ const UserModel = require("../models/user.model");
 const SessionController = require("./session.controller");
 const OtpController = require("./otp.controller");
 const { auth } = require("firebase-admin");
+const { Mongo } = require("../utils/mongo-query");
 
 const UserController = {
   register: Catcher(async (req, res) => {
@@ -50,6 +51,24 @@ const UserController = {
   resetPassword: Catcher(async (req, res) => {
     const resp = new Res(res);
     await OtpController.resetPassword(UserModel, { req });
+    return resp.success({});
+  }),
+
+  changePassword: Catcher(async (req, res) => {
+    const resp = new Res(res);
+
+    const password = req.body.password;
+    const new_password = req.body.new_password;
+
+    // Find old password
+    const found_user = await Mongo.findById(UserModel, { _id: req.user._id,select:"-__v" });
+
+    const verify_password = await _.bcryptFn.verifyPassword(password, found_user.password);
+    if (!verify_password) throw new Error(`400::invalid password`);
+
+    found_user.password = await _.bcryptFn.hashPassword(new_password);
+    await found_user.save();
+
     return resp.success({});
   }),
 };
