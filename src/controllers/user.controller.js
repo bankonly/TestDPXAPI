@@ -4,7 +4,7 @@ const UserModel = require("../models/user.model");
 const SessionController = require("./session.controller");
 const OtpController = require("./otp.controller");
 const { auth } = require("firebase-admin");
-const { Mongo } = require("../utils/mongo-query");
+const Mongo = require("../utils/mongo-query");
 
 const UserController = {
   register: Catcher(async (req, res) => {

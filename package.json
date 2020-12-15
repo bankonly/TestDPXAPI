@@ -18,7 +18,7 @@
     "update:prod": "git pull && npm i && npm run build && pm2 restart 3 && pm2 log 3",
     "update:dev": "git pull && pm2 restart 3 && pm2 log 3",
     "update:develop": "git pull origin develop && git push && npm i && npm update && pm2 restart 3",
-    "push": "git add . && git commit -m 'new update...' && git push",
+    "push": "git add . && git commit -m 'newupdate' && git push",
     "git:bank": "git checkout bank",
     "server:up": "pm2 restart 3 && pm2 log 3",
     "dev:down": "npx kill-port 5020",

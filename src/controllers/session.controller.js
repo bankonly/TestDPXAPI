@@ -1,7 +1,7 @@
 const SessionModel = require("../models/session.model");
 const { GetFullUrl, Res, _ } = require("../utils/common-func");
 const Catcher = require("../middlewares/async");
-const { Mongo } = require("../utils/mongo-query");
+const Mongo = require("../utils/mongo-query");
 
 const SessionController = {
   list: Catcher(async (req, res) => {

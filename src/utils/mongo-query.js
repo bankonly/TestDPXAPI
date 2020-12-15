@@ -106,9 +106,11 @@ const findExist = async (model, { condition = {}, key }) => {
   if (excute) throw new Error(`400::${key} already exist`);
 };
 
-exports.Mongo = {
+const Mongo = {
   findById,
   remove,
   find,
   findExist,
 };
+
+module.exports = Mongo;
