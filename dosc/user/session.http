@@ -1,8 +1,8 @@
 
 @url = http://127.0.0.1:2020
 
-GET {{url}}/api/session/list
-Authorization: {{$token}}
+GET {{url}}/api/session/list?page=1&limit=1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmIzOTBmMWVjZWQxYTM3ZjBlMjE1MTciLCJpYXQiOjE2MDg4MDIyOTEsImV4cCI6MTYwOTQwNzA5MX0.QTNErx91fx-BLnNBOvJLFfi4Il05_0p9bBISOr7-uMo
 
 ###
 POST {{url}}/api/session/clear
