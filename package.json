@@ -79,7 +79,7 @@
     "ssv-middleware": "^1.0.35",
     "ssv-query-builder-mongo": "^1.1.2",
     "ssv-query-mongo": "^1.0.1",
-    "ssv-response": "^1.0.16",
+    "ssv-response": "^1.3.0",
     "ssv-response-no-res": "^1.0.0",
     "ssv-utils": "^1.2.2",
     "tunnel-ssh": "^4.1.4",

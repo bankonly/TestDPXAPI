@@ -1,4 +1,4 @@
-@url = http://127.0.0.1:2020
+@url = http://127.0.0.1:9088
 
 
 GET {{url}}/api/welcome

@@ -1,5 +1,5 @@
 @url = http://127.0.0.1:9088
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGYxNGZlNDQwMTEwMzJhZTRiOTcxY2EiLCJpYXQiOjE2MjY0MjczNjQsImV4cCI6MTYyODE1NTM2NH0.rFGUn4SSrWxqtNZ4WwelAiZ_BZvC-vFl2RkfjOcV8Xs
 POST {{url}}/app/register
 Content-Type: application/json
 
@@ -29,10 +29,21 @@ Authorization: {{$token}}
 ###
 POST {{url}}/api/user/change-password
 Content-Type: application/json
-Authorization: {{$token}}
+Authorization: {{token}}
 
 {
-    "password":"111998tsc",
+    "password":"123123123",
     "new_password":"bank111998",
     "confirm_password":"bank111998"
+}
+
+
+###
+POST {{url}}/api/list-product
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "limit": 20,
+    "page": 2
 }

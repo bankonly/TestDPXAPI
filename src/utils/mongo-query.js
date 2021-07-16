@@ -78,8 +78,13 @@ const find = async (
   if (sort) result = result.sort(sort);
 
   if (paginate.paginate) {
-    paginate.limit = parseInt(paginate.limit) || false;
-    paginate.page = parseInt(paginate.page) || false;
+    if(paginate.paginate.limit || paginate.paginate.page){
+      paginate.limit = parseInt(paginate.paginate.limit) || false;
+      paginate.page = parseInt(paginate.paginate.page) || false;
+    }else{
+      paginate.limit = parseInt(paginate.limit) || false;
+      paginate.page = parseInt(paginate.page) || false;
+    }
 
     if (!paginate.limit || !paginate.page) throw new Error("400::limit and page should be type of number");
     let skip = 0;

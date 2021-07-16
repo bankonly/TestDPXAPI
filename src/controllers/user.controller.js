@@ -5,6 +5,10 @@ const SessionController = require("./session.controller");
 const OtpController = require("./otp.controller");
 const { auth } = require("firebase-admin");
 const Mongo = require("../utils/mongo-query");
+const ProductSellerModel = require("../models/product_seller");
+const ProductMasters = require("../models/Product_master");
+const products_option = require("../models/Product_option");
+const UserFunc = require("../func/user.func");
 
 const UserController = {
   register: Catcher(async (req, res) => {
@@ -70,6 +74,11 @@ const UserController = {
     await found_user.save();
 
     return resp.success({});
+  }),
+  list_product: Catcher(async (req, res) => {
+    const resp = new Res(res);
+    const found_product = await Mongo.find(ProductSellerModel,{ condition:{is_active:"active"}, populate:{path:"product_master_id product_option_id"},paginate:{paginate:req.body || "force"},throw_error:true})
+    return resp.success({data:UserFunc.convert_product_response(found_product)});
   }),
 };
 
