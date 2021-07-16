@@ -1,5 +1,5 @@
-@url = http://127.0.0.1:9088
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGYxNGZlNDQwMTEwMzJhZTRiOTcxY2EiLCJpYXQiOjE2MjY0MjczNjQsImV4cCI6MTYyODE1NTM2NH0.rFGUn4SSrWxqtNZ4WwelAiZ_BZvC-vFl2RkfjOcV8Xs
+@url = http://165.232.173.215:9088
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGYxNTg0Nzg3YmRlZDY3NmVlOTQ3YTgiLCJpYXQiOjE2MjY0Mjk1MjAsImV4cCI6MTYyODE1NzUyMH0.ySfWgaJ4L_vrF8YraZIBN0iOtNaqARffe3uQiO3sU-I
 POST {{url}}/app/register
 Content-Type: application/json
 
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 ###
 GET {{url}}/api/user/profile
-Authorization: {{$token}}
+Authorization: {{token}}
 
 # 5f212f8b3f91c81672d7f398 confirm
 
@@ -45,5 +45,6 @@ Authorization: {{token}}
 
 {
     "limit": 20,
-    "page": 2
+    "page": 1
+
 }
